@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>        
+
+        <SMTP name="LogToMail"
+              from="from@email"
+              replyTo="reply@email"
+              to="to@email"
+              subject="Error Log From Log4j"
+              bufferSize="100"
+              smtpHost="smtphost"
+              smtpPassword="password"
+              smtpPort="port"
+              smtpProtocol="smtp"
+              smtpUsername="username" />
+    </Appenders>
+    <Loggers>
+        <Logger name="fr.frezilla.log4j2.tests.smtpappender.MainClass" level="info" additivity="false">
+            <AppenderRef ref="LogToMail"/>
+        </Logger>
+        <Root level="error">
+            <AppenderRef ref="LogToConsole"/>
+        </Root>
+    </Loggers>
+</Configuration>
